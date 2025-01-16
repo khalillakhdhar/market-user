@@ -1,0 +1,76 @@
+<div class="container-fluid">
+
+  <!-- Page Title -->
+  <app-page-title title="Orders" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4">All Orders</h4>
+
+          <div class="table-responsive">
+            <table class="table table-centered mb-0 table-nowrap align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer Name</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Total Price</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let order of orders">
+                  <td>{{ order.id }}</td>
+                  <td>{{ order.user.name }}</td>
+                  <td>{{ order.date | date }}</td>
+                  <td>{{ order.status }}</td>
+                  <td>
+                    {{ calculateTotalPrice(order.products) }}
+                  </td>
+                  <td>
+                    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <i class="mdi mdi-eye"></i> Voir détailles
+</button>&nbsp;&nbsp;&nbsp;
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Liste des achats</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let pr of order.products" class="card" style="width: 18rem;">
+          <img [src]="pr.photo" class="card-img-top" alt="produit">
+          <div class="card-body">
+            <h5 class="card-title">{{pr.name}}</h5>
+            <p class="card-text">{{pr.description}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
+                    <button class="btn btn-danger btn-sm" (click)="deleteOrder(order.id)">
+                      <i class="mdi mdi-delete"></i> Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

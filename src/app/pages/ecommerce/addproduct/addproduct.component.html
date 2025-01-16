@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Créer un Produit</h5>
+      <form [formGroup]="formulaireProduit" (ngSubmit)="onSoumettre()">
+        <div class="mb-3">
+          <label for="nom" class="form-label">Nom du Produit</label>
+          <input type="text" class="form-control" formControlName="name" placeholder="Entrez le nom du produit" />
+          <div *ngIf="formulaireProduit.controls['name'].invalid && formulaireProduit.controls['name'].touched" class="text-danger">
+            Le nom du produit est requis
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            formControlName="description"
+            placeholder="Entrez une description"
+          ></textarea>
+          <div *ngIf="formulaireProduit.controls['description'].invalid && formulaireProduit.controls['description'].touched" class="text-danger">
+            La description est requise
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="prix" class="form-label">Prix</label>
+          <input type="number" class="form-control" formControlName="price" placeholder="Entrez le prix" />
+          <div *ngIf="formulaireProduit.controls['price'].invalid && formulaireProduit.controls['price'].touched" class="text-danger">
+            Le prix doit être supérieur à 0
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="stock" class="form-label">Quantité en Stock</label>
+          <input type="number" class="form-control" formControlName="stock" placeholder="Entrez la quantité en stock" />
+          <div *ngIf="formulaireProduit.controls['stock'].invalid && formulaireProduit.controls['stock'].touched" class="text-danger">
+            La quantité en stock doit être d’au moins 1
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="categorie" class="form-label">Catégorie</label>
+          <select class="form-select" formControlName="categorieId">
+            <option value="" disabled>Sélectionnez une catégorie</option>
+            <option *ngFor="let categorie of categories" [value]="categorie.id">
+              {{ categorie.name }}
+            </option>
+          </select>
+          <div *ngIf="formulaireProduit.controls['categorieId'].invalid && formulaireProduit.controls['categorieId'].touched" class="text-danger">
+            La catégorie est requise
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="photo" class="form-label">Photo</label>
+          <input type="file" (change)="onPhotoSelectionnee($event)" class="form-control" />
+        </div>
+        <div class="text-end">
+          <button type="submit" class="btn btn-primary" [disabled]="!formulaireProduit.valid || !photo">Créer le Produit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

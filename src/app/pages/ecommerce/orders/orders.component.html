@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <app-page-title title="Order Details" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4">Order Products</h4>
+          <div class="table-responsive">
+            <table class="table table-centered mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Product</th>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Total</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of selectedOrder?.products; let i = index">
+                  <td>
+                    <img [src]="product.photo" alt="Product" class="img-thumbnail" style="width: 50px;">
+                  </td>
+                  <td>{{ product.name }}</td>
+                  <td>${{ product.price }}</td>
+                  <td>
+                    <input type="number" class="form-control" [(ngModel)]="product.quantity" (change)="updateQuantity(i)">
+                  </td>
+                  <td>${{ product.price * product.quantity }}</td>
+                  <td>
+                    <button class="btn btn-danger btn-sm" (click)="removeProduct(i)">
+                      <i class="mdi mdi-delete"></i> Remove
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

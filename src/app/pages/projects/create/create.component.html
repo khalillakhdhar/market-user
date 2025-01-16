@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <app-page-title title="Create Category" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()" [formGroup]="categoryForm">
+            <div class="mb-3">
+              <label for="name" class="form-label">Nom</label>
+              <input type="text" id="name" class="form-control" formControlName="name" placeholder="Enter category name" />
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea id="description" class="form-control" formControlName="description" placeholder="Enter description"></textarea>
+            </div>
+            <div class="text-end">
+              <button type="submit" class="btn btn-primary">Créer une Categorie</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

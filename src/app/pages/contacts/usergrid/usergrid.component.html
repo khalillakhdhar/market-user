@@ -1,0 +1,71 @@
+<div class="container-fluid">
+  <!-- start page title -->
+  <app-page-title title="Gestion des utilisateurs" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <!-- end page title -->
+
+  <div class="row">
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h5 class="modal-title mt-0">{{ userForm.value.id ? 'Modifier l’utilisateur' : 'Ajouter un utilisateur' }}</h5>
+        <button type="button" class="btn-close" aria-hidden="true" (click)="modalRef?.hide()"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="saveUser()" [formGroup]="userForm">
+          <div class="mb-3">
+            <label class="control-label">Nom</label>
+            <input
+              class="form-control"
+              placeholder="Entrez le nom"
+              type="text"
+              formControlName="name"
+              [ngClass]="{ 'is-invalid': submitted && form.name.errors }"
+            />
+            <div *ngIf="submitted && form.name.errors" class="invalid-feedback">
+              <span *ngIf="form.name.errors.required">Le nom est requis.</span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="control-label">Email</label>
+            <input
+              class="form-control"
+              placeholder="Entrez l’email"
+              type="email"
+              formControlName="email"
+              [ngClass]="{ 'is-invalid': submitted && form.email.errors }"
+            />
+            <div *ngIf="submitted && form.email.errors" class="invalid-feedback">
+              <span *ngIf="form.email.errors.required">L’email est requis.</span>
+              <span *ngIf="form.email.errors.email">Format invalide.</span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="control-label">Rôle</label>
+            <select class="form-control" formControlName="roles">
+              <option *ngFor="let role of selectValue" [value]="role">{{ role }}</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-success">Sauvegarder</button>
+        </form>
+      </div>
+    </ng-template>
+
+    <div class="col-xl-3 col-sm-6" *ngFor="let user of userGridData">
+      <div class="card text-center">
+        <div class="card-body">
+          <div class="avatar-sm mx-auto mb-4">
+            <span class="avatar-title rounded-circle bg-primary-subtle text-primary font-size-16">
+              {{ user.name.charAt(0) }}
+            </span>
+          </div>
+          <h5 class="font-size-15 mb-1">{{ user.name }}</h5>
+          <p class="text-muted">{{ user.email }}</p>
+          <p class="text-muted">Rôle : {{ user.roles }}</p>
+        </div>
+        <div class="card-footer bg-transparent border-top">
+          <button class="btn btn-sm btn-primary" (click)="openModal(content, user)">Modifier</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteUser(user.id)">Supprimer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

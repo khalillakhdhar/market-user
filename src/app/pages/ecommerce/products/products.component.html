@@ -1,0 +1,85 @@
+<div class="container-fluid">
+  <!-- Titre de la page -->
+  <app-page-title title="Produits" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+
+  <div class="row">
+    <!-- Barre latérale de filtrage -->
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4">Filtrer</h4>
+
+          <!-- Filtrage par catégorie -->
+          <div>
+            <h5 class="font-size-14 mb-3">Catégories</h5>
+            <ul class="list-unstyled product-list">
+              <li (click)="filterByCategory(0)"><a href="javascript:void(0)"><i class="mdi mdi-chevron-right me-1"></i> Toutes</a></li>
+              <li *ngFor="let category of categories" (click)="filterByCategory(category.id)">
+                <a href="javascript:void(0)"><i class="mdi mdi-chevron-right me-1"></i> {{ category.name }}</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Filtrage par prix -->
+          <div class="mt-4 pt-3">
+            <h5 class="font-size-14 mb-3">Prix</h5>
+            <ngx-slider [(value)]="minVal" [(highValue)]="maxVal" [options]="priceoption"
+                        (valueChange)="valueChange($event, true)" (highValueChange)="valueChange($event, false)">
+            </ngx-slider>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grille des produits -->
+    <div class="col-lg-9">
+      <div class="row mb-3">
+        <div class="col-xl-4 col-sm-6">
+          <div class="mt-2">
+            <h5>Produits</h5>
+          </div>
+        </div>
+        <div class="col-lg-8 col-sm-6">
+          <form class="mt-4 mt-sm-0 float-sm-end d-flex align-items-center">
+            <div class="search-box me-2">
+              <div class="position-relative">
+                <input type="text" class="form-control border-0" id="searchProductList" autocomplete="off" placeholder="Rechercher..."
+                       (input)="searchFilter($event)">
+                <i class="bx bx-search-alt search-icon"></i>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Liste des produits -->
+      <div class="row">
+        <div class="col-xl-4 col-sm-6" *ngFor="let product of products">
+          <div class="card">
+            <div class="card-body">
+              <div class="product-img position-relative">
+                <img [src]="product.photo" alt="" class="img-fluid mx-auto d-block">
+              </div>
+              <div class="mt-4">
+                <h5><a href="javascript:void(0);" class="text-dark">{{ product.name }}</a></h5>
+                <h5 class="my-0"><b>TND {{ product.price }}</b></h5>
+                <div *ngIf="product.auction">
+                  <p class="mb-1">Enchère actuelle : <b>TND {{ product.auction.currentBid }}</b></p>
+                  <p class="mb-1">
+                    Plus offrant :
+                    <span *ngIf="isHighestBidder(product.auction.highestBidder.id)">Vous</span>
+                    <span *ngIf="!isHighestBidder(product.auction.highestBidder.id)">{{ product.auction.highestBidder.name }}</span>
+                  </p>
+                  <button class="btn btn-primary btn-sm mt-2" (click)="placeBid(product)">
+                    Placer une enchère
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
