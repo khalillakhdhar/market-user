@@ -177,7 +177,7 @@
       "TEXT": "Utilisateurs",
       "LIST": {
         "USERGRID": "Utilisateurs",
-        "USERLIST": "Etudiants",
+        "USERLIST": "Vendeurs",
         "PROFILE": "Profile et enchéres"
       }
     },
