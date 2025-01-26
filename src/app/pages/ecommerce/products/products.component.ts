@@ -18,7 +18,7 @@ export class ProductsComponent implements OnInit {
   breadCrumbItems: Array<{}>;
   pricevalue: number = 0;
   minVal: number = 0; // Prix minimum
-  maxVal: number = 10000000; // Prix maximum
+  maxVal: number = 10000; // Prix maximum
   page: number = 1;
   categoryId: number = 0; // Catégorie par défaut (aucun filtre)
   searchName: string = ''; // Terme de recherche
@@ -45,7 +45,7 @@ export class ProductsComponent implements OnInit {
     this.fetchProducts();
     this.fetchCategories(); // Récupérer les catégories au chargement
   }
-  isHighestBidder(highestBidderId: number): boolean {
+  isHighestBidder(highestBidderId: any): boolean {
     const currentUser = this.decodeToken();
     return currentUser && currentUser.userId === highestBidderId;
   }

@@ -66,9 +66,11 @@
                 <div *ngIf="product.auction">
                   <p class="mb-1">Enchère actuelle : <b>TND {{ product.auction.currentBid }}</b></p>
                   <p class="mb-1">
+                    <span *ngIf="product.auction.highestBidder?.id">
                     Plus offrant :
                     <span *ngIf="isHighestBidder(product.auction.highestBidder.id)">Vous</span>
                     <span *ngIf="!isHighestBidder(product.auction.highestBidder.id)">{{ product.auction.highestBidder.name }}</span>
+                    </span>
                   </p>
                   <button class="btn btn-primary btn-sm mt-2" (click)="placeBid(product)">
                     Placer une enchère
