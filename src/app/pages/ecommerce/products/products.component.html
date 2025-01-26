@@ -63,7 +63,7 @@
               <div class="mt-4">
                 <h5><a href="javascript:void(0);" class="text-dark">{{ product.name }}</a></h5>
                 <h5 class="my-0"><b>TND {{ product.price }}</b></h5>
-                <div *ngIf="product.auction">
+                <div >
                   <p class="mb-1">Enchère actuelle : <b>TND {{ product.auction.currentBid }}</b></p>
                   <p class="mb-1">
                     <span *ngIf="product.auction.highestBidder?.id">
