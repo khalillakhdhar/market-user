@@ -125,8 +125,10 @@
               <li *ngFor="let auction of auctions" class="list-group-item">
                 <div class="d-flex justify-content-between align-items-center">
                   <div>
-                    <h5 class="mb-1">{{ auction.productName }}</h5>
+                    <h5 class="mb-1">{{ auction.product.name }}</h5>
+                    <img [src]="auction.product.photo" alt="Product" class="avatar rounded me-2" width="100" height="100" />
                     <p class="mb-0 text-muted">
+
                       Prix de départ : {{ auction.startingPrice | currency:'TND' }}<br>
                       Dernière enchère : {{ auction.currentBid | currency:'TND' }}<br>
                       Fin : {{ auction.endTime | date:'short' }}

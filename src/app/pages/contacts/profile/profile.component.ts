@@ -35,6 +35,7 @@ export class ProfileComponent implements OnInit {
       (userInfo) => {
         this.user = userInfo;
         this.auctions = userInfo.auctions || []; // Charger les enchères
+        console.log("auctions",this.auctions)
       },
       (error) => {
         console.error('Erreur lors du chargement des informations utilisateur :', error);
