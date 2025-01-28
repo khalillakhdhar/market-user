@@ -249,7 +249,7 @@ const emailSentBarChart: ChartType = {
     stroke: {
         width: [0, 0, 2, 2],
         curve: 'smooth'
-    }, 
+    },
     plotOptions: {
         bar: {
             columnWidth: '30%'
@@ -394,7 +394,7 @@ const recentJobsData = [
     {
         image: 'assets/images/companies/airbnb.svg',
         title: 'NodeJs Developer',
-        brand: 'Skote Themes',
+        brand: 'Enchére Themes',
         location: 'Louisiana',
         time: 2
     },
