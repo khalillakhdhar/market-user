@@ -13,7 +13,6 @@ export class ProfileComponent implements OnInit {
   breadCrumbItems: Array<{}>;
   user: any = {}; // Utilisateur connecté
   stats: any = {}; // Statistiques basées sur produits, commandes, catégories
-  auctions: any[] = []; // Liste des enchères auxquelles l'utilisateur participe
 
   constructor(
     private productService: ProductService,
@@ -34,8 +33,7 @@ export class ProfileComponent implements OnInit {
     this.userService.getCurrentUser(userId).subscribe(
       (userInfo) => {
         this.user = userInfo;
-        this.auctions = userInfo.auctions || []; // Charger les enchères
-        console.log("auctions",this.auctions)
+        console.log("user",userInfo)
       },
       (error) => {
         console.error('Erreur lors du chargement des informations utilisateur :', error);

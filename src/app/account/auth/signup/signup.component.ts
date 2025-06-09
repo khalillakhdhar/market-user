@@ -48,7 +48,6 @@ export class SignupComponent implements OnInit {
       password: this.f.password.value,
       roles: this.f.roles.value,
 
-
     };
 
     // Appel au service pour enregistrer l'utilisateur

@@ -21,7 +21,7 @@
               <tbody>
                 <tr *ngFor="let product of selectedOrder?.products; let i = index">
                   <td>
-                    <img [src]="product.photo" alt="Product" class="img-thumbnail" style="width: 50px;">
+                    <img [src]="product.photo" alt="Product" class="img-thumbnail order-product-img">
                   </td>
                   <td>{{ product.name }}</td>
                   <td>${{ product.price }}</td>

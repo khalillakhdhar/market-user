@@ -58,7 +58,7 @@
       "FAQ": "FAQs"
     },
     "LOGIN": {
-      "PROFILE": "Profile et enchéres",
+      "PROFILE": "Profile",
       "MY_WALLET": "My Wallet",
       "SETTINGS": "Settings",
       "LOCK_SCREEN": "Lock screen",
@@ -115,7 +115,7 @@
         "PRODUCTDETAIL": "Product Detail",
         "ORDERS": "Orders",
         "CUSTOMERS": "Customers",
-        "CART": "Commandes",
+        "CART": "Panier",
         "CHECKOUT": "Checkout",
         "SHOPS": "Shops",
         "ADDPRODUCT": "Ajouter produit"
@@ -174,11 +174,11 @@
       }
     },
     "CONTACTS": {
-      "TEXT": "Utilisateurs",
+      "TEXT": "Compte",
       "LIST": {
         "USERGRID": "Utilisateurs",
-        "USERLIST": "Vendeurs",
-        "PROFILE": "Profile et enchéres"
+        "USERLIST": "Etudiants",
+        "PROFILE": "Profile"
       }
     },
     "BLOG": {

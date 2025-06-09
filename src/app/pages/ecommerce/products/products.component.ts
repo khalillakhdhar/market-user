@@ -16,7 +16,7 @@ import { Order } from 'src/app/core/models/order.interface';
 })
 export class ProductsComponent implements OnInit {
   breadCrumbItems: Array<{}>;
-  pricevalue: number = 0;
+  pricevalue: number = 100;
   minVal: number = 0; // Prix minimum
   maxVal: number = 10000; // Prix maximum
   page: number = 1;
@@ -25,7 +25,7 @@ export class ProductsComponent implements OnInit {
 
   priceoption: Options = {
     floor: 0,
-    ceil: 100000, // Prix maximum configurable
+    ceil: 10000, // Prix maximum configurable
     translate: (value: number): string => `TND${value}`
   };
 
@@ -45,28 +45,6 @@ export class ProductsComponent implements OnInit {
     this.fetchProducts();
     this.fetchCategories(); // Récupérer les catégories au chargement
   }
-  isHighestBidder(highestBidderId: any): boolean {
-    const currentUser = this.decodeToken();
-    return currentUser && currentUser.userId === highestBidderId;
-  }
-  placeBid(product: Product): void {
-    const bidAmount = prompt('Entrez votre montant pour l\'enchère (TND) :');
-    if (!bidAmount || isNaN(Number(bidAmount)) || Number(bidAmount) <= product.auction.currentBid) {
-      alert('Veuillez entrer un montant supérieur à l\'enchère actuelle.');
-      return;
-    }
-
-    this.productService.placeBid(product.id, Number(bidAmount)).subscribe(
-      () => {
-        alert('Enchère placée avec succès.');
-        this.fetchProducts(); // Recharger la liste des produits pour mettre à jour l'état
-      },
-      (error) => {
-      //  console.error('Erreur lors du placement de l\'enchère :', error);
-        //alert('Impossible de placer l\'enchère.');
-      }
-    );
-  }
 
   fetchProducts(): void {
     this.productService.searchProducts({
@@ -76,7 +54,6 @@ export class ProductsComponent implements OnInit {
       categoryId: this.categoryId
     }).subscribe((products) => {
       this.products = products;
-      console.log("produits",products)
       this.filteredProducts = products; // Initialiser filteredProducts
     });
   }
